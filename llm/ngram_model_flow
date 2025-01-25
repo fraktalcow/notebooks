@@ -1,0 +1,36 @@
+// N-Gram Model Flow
+digraph {
+	rankdir=LR size="10,5"
+	A [label="Input Sentence
+(Raw Text)" shape=ellipse]
+	B [label="Preprocessed Tokens
+(Lowercased, Tokenized)" shape=ellipse]
+	C [label="Generate N-Grams
+(e.g., ('the', 'fox', 'is'))" shape=ellipse]
+	D [label="Update Counts
+(N-Grams & Contexts)" shape=ellipse]
+	E [label="Input Context
+(e.g., ('fox', 'is'))" shape=ellipse]
+	F [label="Compute Probabilities
+of Candidate Words" shape=ellipse]
+	G [label="Predicted Word
+(e.g., 'quick')" shape=ellipse]
+	H [label="Corpus Tokens
+(e.g., [('the', 'fox', 'is'), ...])" shape=ellipse]
+	I [label="Compute N-Gram
+Probabilities" shape=ellipse]
+	J [label="Sum Log
+Probabilities" shape=ellipse]
+	K [label="Compute Perplexity
+PPL = exp(-ΣlogP / N)" shape=ellipse]
+	A -> B
+	B -> C
+	C -> D
+	E -> F
+	F -> G
+	H -> I
+	I -> J
+	J -> K
+	D -> F [label="N-Gram Counts"]
+	D -> I [label="Context Counts"]
+}
